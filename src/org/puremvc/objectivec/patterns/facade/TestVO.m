@@ -11,4 +11,8 @@
 
 @implementation TestVO
 @synthesize input, result, result1, result2;
+
++(id)testVO {
+	return [[[self alloc] init] autorelease];
+}
 @end

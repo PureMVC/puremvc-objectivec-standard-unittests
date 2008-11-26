@@ -6,8 +6,7 @@
 //  PureMVC - Copyright(c) 2006-2008 Futurescale, Inc., Some rights reserved.
 //
 
-#import "GTMSenTestCase.h"
-
+#import <SenTestingKit/SenTestingKit.h>
 
 @interface ProxyTest : SenTestCase {
 

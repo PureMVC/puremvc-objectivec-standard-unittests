@@ -16,14 +16,14 @@
 -(void)testMacroCommandExecute {
 	
 	// Create the VO
-	TestVO *vo = [[[TestVO alloc] init] autorelease];
+	TestVO *vo = [TestVO testVO];
 	vo.input = 5;
 	
 	// Create the Notification (note)
-	id<INotification> note = [[[Notification alloc] initWithName:@"MacroCommandTest" body:vo type:nil] autorelease];
+	id<INotification> note = [Notification withName:@"MacroCommandTest" body:vo];
 	
 	// Create the MacroCommand     
-	id<ICommand> command = [[[MacroCommandTestCommand alloc] init] autorelease];
+	id<ICommand> command = [MacroCommandTestCommand command];
 	
 	// Execute the MacroCommand
 	[command execute:note];

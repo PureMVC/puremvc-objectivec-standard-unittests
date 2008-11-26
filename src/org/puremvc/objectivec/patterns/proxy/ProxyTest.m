@@ -14,13 +14,13 @@
 -(void)testConstructor {
 	
 	// Create a new Proxy using the Constructor to set the name and data
-	id<IProxy> proxy = [[[Proxy alloc] initWithProxyName:@"colors" data:[NSArray arrayWithObjects:@"red", @"green", @"blue", nil]] autorelease];
+	id<IProxy> proxy = [Proxy withProxyName:@"colors" data:[NSArray arrayWithObjects:@"red", @"green", @"blue", nil]];
 	NSArray *data = [proxy getData];
 	
 	// test assertions
-	STAssertNotNULL(proxy, @"Expecting proxy not null");
+	STAssertTrue(proxy != nil, @"Expecting proxy not null");
 	STAssertTrue([[proxy getProxyName] isEqualToString:@"colors"], @"proxy name should be colors");
-	STAssertNotNULL(data, @"Expecting data not null");
+	STAssertTrue(data != nil, @"Expecting data not null");
 	STAssertTrue([data count] == 3, @"Expecting [data count] == 3");
 	STAssertTrue([[data objectAtIndex:0] isEqualToString:@"red"], @"shoud be red");
 	STAssertTrue([[data objectAtIndex:1] isEqualToString:@"green"], @"shoud be green");

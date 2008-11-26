@@ -1,9 +1,9 @@
 //
 //  ControllerTest.m
-
+//  PureMVC_ObjectiveC
 //
-//  Created by Brian Knorr on 11/19/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  PureMVC Port to ObjectiveC by Brian Knorr <brian.knorr@puremvc.org>
+//  PureMVC - Copyright(c) 2006-2008 Futurescale, Inc., Some rights reserved.
 //
 
 #import "ControllerTest.h"
@@ -27,9 +27,9 @@
 	[controller registerCommand:@"ControllerTest" commandClassRef:[ControllerTestCommand class]];
 	
 	// Create a 'ControllerTest' note
-    TestVO *vo = [[[TestVO alloc] init] autorelease];
+    TestVO *vo = [TestVO testVO];
 	vo.input = 12;
-	Notification *note = [[[Notification alloc] initWithName:@"ControllerTest" body:vo type:nil] autorelease];
+	Notification *note = [Notification withName:@"ControllerTest" body:vo];
 
 	// Tell the controller to execute the Command associated with the note
 	// the ControllerTestCommand invoked will multiply the vo.input value
@@ -46,9 +46,9 @@
 	[controller registerCommand:@"ControllerRemoveTest" commandClassRef:[ControllerTestCommand class]];
 	
 	// Create a 'ControllerTest' note
-	TestVO *vo = [[[TestVO alloc] init] autorelease];
+	TestVO *vo = [TestVO testVO];
 	vo.input = 12;
-	Notification *note = [[[Notification alloc] initWithName:@"ControllerRemoveTest" body:vo type:nil] autorelease];
+	Notification *note = [Notification withName:@"ControllerRemoveTest" body:vo];
 	
 	// Tell the controller to execute the Command associated with the note
 	// the ControllerTestCommand invoked will multiply the vo.input value
@@ -102,9 +102,9 @@
 	[controller registerCommand:@"ControllerTest2" commandClassRef:[ControllerTestCommand2 class]];
 	
 	// Create a 'ControllerTest2' note
-	TestVO *vo = [[[TestVO alloc] init] autorelease];
+	TestVO *vo = [TestVO testVO];
 	vo.input = 12;
-	Notification *note = [[[Notification alloc] initWithName:@"ControllerTest2" body:vo type:nil] autorelease];
+	Notification *note = [Notification withName:@"ControllerTest2" body:vo];
 	
 	// retrieve a reference to the View.
 	id<IView> view = [View getInstance];

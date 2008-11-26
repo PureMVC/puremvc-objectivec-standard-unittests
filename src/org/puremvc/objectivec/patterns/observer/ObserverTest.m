@@ -15,7 +15,7 @@
 -(void)testConstructor {
 	
 	// Create observer passing in notification method and context
-	id<IObserver> observer = [[[Observer alloc] initWithNotifyMethod:@selector(observerTestMethod:) notifyContext:self] autorelease];
+	id<IObserver> observer = [Observer withNotifyMethod:@selector(observerTestMethod:) notifyContext:self];
 	
 	// create a test note, setting a body value and notify 
 	// the observer with it. since the observer is this class 
@@ -23,7 +23,7 @@
 	// successful notification will result in our local 
 	// observerTestVar being set to the value we pass in 
 	// on the note body.
-	id<INotification> note = [[[Notification alloc] initWithName:@"ObserverTestNote" body:@"5" type:nil] autorelease];
+	id<INotification> note = [Notification withName:@"ObserverTestNote" body:@"5"];
 	[observer notifyObserver:note];
 	
 	// test assertions              
@@ -33,7 +33,7 @@
 -(void)testCompareNotifyContext {
 	
 	// Create observer passing in notification method and context
-	id<IObserver> observer = [[[Observer alloc] initWithNotifyMethod:@selector(observerTestMethod:) notifyContext:self] autorelease];
+	id<IObserver> observer = [Observer withNotifyMethod:@selector(observerTestMethod:) notifyContext:self];
 	
 	id object = [[[NSObject alloc] init] autorelease];
 	

@@ -1,12 +1,11 @@
 //
 //  ViewTestMediator6.h
-
+//  PureMVC_ObjectiveC
 //
-//  Created by Brian Knorr on 11/19/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  PureMVC Port to ObjectiveC by Brian Knorr <brian.knorr@puremvc.org>
+//  PureMVC - Copyright(c) 2006-2008 Futurescale, Inc., Some rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "Mediator.h"
 
 @interface ViewTestMediator6 : Mediator {

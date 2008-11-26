@@ -30,9 +30,9 @@
 	// Send notification. The Command associated with the event
 	// (TestCommand) will be invoked, and will multiply 
 	// the vo.input value by 2 and set the result on vo.result
-	TestVO *vo = [[[TestVO alloc] init] autorelease];
+	TestVO *vo = [TestVO testVO];
 	vo.input = 32;
-	[facade sendNotification:@"FacadeTestNote" body:vo type:nil];
+	[facade sendNotification:@"FacadeTestNote" body:vo];
 	
 	// test assertions 
 	STAssertTrue(vo.result == 64, @"result should be 64");
@@ -51,9 +51,9 @@
 	// Send notification. The Command associated with the event
 	// (FacadeTestCommand) will NOT be invoked, and will NOT multiply 
 	// the vo.input value by 2 
-	TestVO *vo = [[[TestVO alloc] init] autorelease];
+	TestVO *vo = [TestVO testVO];
 	vo.input = 32;
-	[facade sendNotification:@"FacadeTestNote" body:vo type:nil];
+	[facade sendNotification:@"FacadeTestNote" body:vo];
 	
 	// test assertions 
 	STAssertTrue(vo.result == 0, @"result should be 0");
@@ -64,16 +64,16 @@
 	// register a proxy and retrieve it.
 	id<IFacade> facade = [Facade getInstance];
 	
-	[facade registerProxy:[[[Proxy alloc] initWithProxyName:@"colors" data:[NSArray arrayWithObjects:@"red", @"green", @"blue", nil]] autorelease]];
+	[facade registerProxy:[Proxy withProxyName:@"colors" data:[NSArray arrayWithObjects:@"red", @"green", @"blue", nil]]];
 	
 	id<IProxy> proxy = [facade retrieveProxy:@"colors"];
-	STAssertNotNULL(proxy, @"proxy should not be nil");
+	STAssertTrue(proxy != nil, @"proxy should not be nil");
 	
 	// retrieve data from proxy
 	NSArray *data = [proxy getData];
 	
 	// test assertions
-	STAssertNotNULL(data, @"Expecting data not null");
+	STAssertTrue(data != nil, @"Expecting data not null");
 	STAssertTrue([data count] == 3, @"Expecting [data count] == 3");
 	STAssertTrue([[data objectAtIndex:0] isEqualToString:@"red"], @"shoud be red");
 	STAssertTrue([[data objectAtIndex:1] isEqualToString:@"green"], @"shoud be green");
@@ -84,7 +84,7 @@
 	
 	// register a proxy, remove it, then try to retrieve it
 	id<IFacade> facade = [Facade getInstance];
-	[facade registerProxy:[[[Proxy alloc] initWithProxyName:@"sizes" data:[NSArray arrayWithObjects:@"7", @"13", @"21", nil]] autorelease]];
+	[facade registerProxy:[Proxy withProxyName:@"sizes" data:[NSArray arrayWithObjects:@"7", @"13", @"21", nil]]];
 	
 	STAssertTrue([facade hasProxy:@"sizes"], @"should have proxy sizes");
 	
@@ -98,14 +98,14 @@
 	proxy = [facade retrieveProxy:@"sizes"];
 	
 	// test assertions
-	STAssertNULL(proxy, @"Expecting proxy is null");
+	STAssertTrue(proxy == nil, @"Expecting proxy is null");
 }
 
 -(void)testHasAndRegisterRetrieveAndRemoveMediator {
 	
 	// register a mediator, remove it, then try to retrieve it
 	id<IFacade> facade = [Facade getInstance];
-	[facade registerMediator:[[[Mediator alloc] initWithMediatorName:@"TestMediator" viewComponent:self] autorelease]];
+	[facade registerMediator:[Mediator withMediatorName:@"TestMediator" viewComponent:self]];
 	
 	STAssertTrue([facade hasMediator:@"TestMediator"], @"should have mediator TestMediator");
 	

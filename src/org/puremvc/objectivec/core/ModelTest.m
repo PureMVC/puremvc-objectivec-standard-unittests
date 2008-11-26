@@ -1,9 +1,9 @@
 //
 //  ModelTest.m
-
+//  PureMVC_ObjectiveC
 //
-//  Created by Brian Knorr on 11/19/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  PureMVC Port to ObjectiveC by Brian Knorr <brian.knorr@puremvc.org>
+//  PureMVC - Copyright(c) 2006-2008 Futurescale, Inc., Some rights reserved.
 //
 
 #import "ModelTest.h"
@@ -22,13 +22,13 @@
 	
 	// register a proxy and retrieve it.
 	id<IModel> model = [Model getInstance];
-	[model registerProxy:[[[Proxy alloc] initWithProxyName:@"colors" data:[NSArray arrayWithObjects:@"red", @"green", @"blue", nil]] autorelease]];
+	[model registerProxy:[Proxy withProxyName:@"colors" data:[NSArray arrayWithObjects:@"red", @"green", @"blue", nil]]];
 	
 	id<IProxy> proxy = [model retrieveProxy:@"colors"];
 	NSArray *data = [proxy getData];
 	
 	// test assertions
-	STAssertNotNULL(data, @"Expecting data not null");
+	STAssertTrue(data != nil, @"Expecting data not null");
 	STAssertTrue([data count] == 3, @"Expecting [data count] == 3");
 	STAssertTrue([[data objectAtIndex:0] isEqualToString:@"red"], @"shoud be red");
 	STAssertTrue([[data objectAtIndex:1] isEqualToString:@"green"], @"shoud be green");
@@ -39,7 +39,7 @@
 	
 	// register a proxy, remove it, then try to retrieve it
 	id<IModel> model = [Model getInstance];
-	[model registerProxy:[[[Proxy alloc] initWithProxyName:@"sizes" data:[NSArray arrayWithObjects:@"7", @"13", @"21", nil]] autorelease]];
+	[model registerProxy:[Proxy withProxyName:@"sizes" data:[NSArray arrayWithObjects:@"7", @"13", @"21", nil]]];
 	
 	// remove the proxy
 	id<IProxy> proxy = [model removeProxy:@"sizes"];
@@ -51,14 +51,14 @@
 	proxy = [model retrieveProxy:@"sizes"];
 	
 	// test assertions
-	STAssertNULL(proxy, @"Expecting proxy is null");
+	STAssertTrue(proxy == nil, @"Expecting proxy is null");
 }
 
 -(void)testHasProxy {
 	
 	// register a proxy
 	id<IModel> model = [Model getInstance];
-	[model registerProxy:[[[Proxy alloc] initWithProxyName:@"aces" data:[NSArray arrayWithObjects:@"clubs", @"spades", @"hearts", @"diamonds", nil]] autorelease]];
+	[model registerProxy:[Proxy withProxyName:@"aces" data:[NSArray arrayWithObjects:@"clubs", @"spades", @"hearts", @"diamonds", nil]]];
 	
 	// assert that the model hasProxy method returns true
 	// for that proxy name
@@ -78,7 +78,7 @@
 	id<IModel> model = [Model getInstance];
 	
 	// Create and register the test mediator
-	id<IProxy> proxy = [[[ModelTestProxy alloc] init] autorelease];
+	id<IProxy> proxy = [ModelTestProxy proxy];
 	[model registerProxy:proxy];
 	
 	// assert that onRegsiter was called, and the proxy responded by setting its data accordingly

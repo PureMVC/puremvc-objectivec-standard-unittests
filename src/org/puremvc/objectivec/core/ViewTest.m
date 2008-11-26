@@ -1,9 +1,9 @@
 //
 //  ViewTest.m
-
+//  PureMVC_ObjectiveC
 //
-//  Created by Brian Knorr on 11/19/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  PureMVC Port to ObjectiveC by Brian Knorr <brian.knorr@puremvc.org>
+//  PureMVC - Copyright(c) 2006-2008 Futurescale, Inc., Some rights reserved.
 //
 
 #import "ViewTest.h"
@@ -36,7 +36,7 @@
 	id<IView> view = [View getInstance];
 	
 	// Create observer, passing in notification method and context
-	id<IObserver> observer = [[[Observer alloc] initWithNotifyMethod:@selector(viewTestMethod:) notifyContext:self] autorelease];
+	id<IObserver> observer = [Observer withNotifyMethod:@selector(viewTestMethod:) notifyContext:self];
 	
 	// Register Observer's interest in a particulat Notification with the View 
 	[view registerObserver:@"ViewTestNote" observer:observer];
@@ -48,7 +48,7 @@
 	// successful notification will result in our local 
 	// viewTestVar being set to the value we pass in 
 	// on the note body.
-	id<INotification> note = [[[Notification alloc] initWithName:@"ViewTestNote" body:@"10" type:nil] autorelease];
+	id<INotification> note = [Notification withName:@"ViewTestNote" body:@"10"];
 	[view notifyObservers:note];
 	
 	// test assertions 
@@ -61,7 +61,7 @@
 	id<IView> view = [View getInstance];
 	
 	// Create and register the test mediator
-	id<IMediator> viewTestMediator = [[[Mediator alloc] initWithMediatorName:@"ViewTestMediator" viewComponent:self] autorelease];
+	id<IMediator> viewTestMediator = [Mediator withMediatorName:@"ViewTestMediator" viewComponent:self];
 	[view registerMediator:viewTestMediator];
 	
 	// Retrieve the component
@@ -77,7 +77,7 @@
 	id<IView> view = [View getInstance];
 	
 	// Create and register the test mediator
-	id<IMediator> mediator = [[[Mediator alloc] initWithMediatorName:@"hasMediatorTest" viewComponent:self] autorelease];
+	id<IMediator> mediator = [Mediator withMediatorName:@"hasMediatorTest" viewComponent:self];
 	[view registerMediator:mediator];
 	
 	// assert that the view.hasMediator method returns true
@@ -97,7 +97,7 @@
 	id<IView> view = [View getInstance];
 	
 	// Create and register the test mediator
-	id<IMediator> mediator = [[[Mediator alloc] initWithMediatorName:@"testing" viewComponent:self] autorelease];
+	id<IMediator> mediator = [Mediator withMediatorName:@"testing" viewComponent:self];
 	[view registerMediator:mediator];
 	
 	// Remove the component
@@ -116,7 +116,7 @@
 	id<IView> view = [View getInstance];
 	
 	// Create and register the test mediator
-	id<IMediator> mediator = [[[ViewTestMediator alloc] initWithMediatorName:@"testing" viewComponent:self] autorelease];
+	id<IMediator> mediator = [ViewTestMediator withMediatorName:@"testing" viewComponent:self];
 	[view registerMediator:mediator];
 	
 	// assert that onRegsiter was called, and the mediator responded by setting our boolean
@@ -136,7 +136,7 @@
 	
 	// Create and register the test mediator, 
 	// but not so we have a reference to it
-	id<IMediator> mediator = [[[ViewTestMediator alloc] initWithMediatorName:@"testing" viewComponent:self] autorelease];
+	id<IMediator> mediator = [ViewTestMediator withMediatorName:@"testing" viewComponent:self];
 	[view registerMediator:mediator];
 	
 	// test that we can retrieve it
@@ -169,14 +169,14 @@
 	id<IView> view = [View getInstance];
 	
 	// Create and register the test mediator to be removed.
-	id<IMediator> mediator = [[[ViewTestMediator alloc] initWithMediatorName:@"testing" viewComponent:self] autorelease];
+	id<IMediator> mediator = [ViewTestMediator withMediatorName:@"testing" viewComponent:self];
 	[view registerMediator:mediator];
 	
 	// test that notifications work
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification1" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification1"]];
 	STAssertTrue([lastNotification isEqualToString:@"Notification1"], @"should be equal to Notification1");
 	
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification2" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification2"]];
 	STAssertTrue([lastNotification isEqualToString:@"Notification2"], @"should be equal to Notification2");
 	
 	// Remove the Mediator
@@ -190,10 +190,10 @@
 	// on this component, and ViewTestMediator)
 	self.lastNotification = nil;
 	
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification1" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification1"]];
 	STAssertTrue(lastNotification == nil, @"lastNotification should be nil");
 	
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification2" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification2"]];
 	STAssertTrue(lastNotification == nil, @"lastNotification should be nil");                                     
 }
 
@@ -203,21 +203,21 @@
 	id<IView> view = [View getInstance];
 	
 	// Create and register that responds to notifications 1 and 2
-	id<IMediator> mediator = [[[ViewTestMediator alloc] initWithMediatorName:@"testing" viewComponent:self] autorelease];
+	id<IMediator> mediator = [ViewTestMediator withMediatorName:@"testing" viewComponent:self];
 	[view registerMediator:mediator];
 	
 	// Create and register that responds to notification 3
-	id<IMediator> mediator3 = [[[ViewTestMediator3 alloc] initWithMediatorName:@"testing3" viewComponent:self] autorelease];
+	id<IMediator> mediator3 = [ViewTestMediator3 withMediatorName:@"testing3" viewComponent:self];
 	[view registerMediator:mediator3];
 	
 	// test that all notifications work
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification1" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification1"]];
 	STAssertTrue([lastNotification isEqualToString:@"Notification1"], @"should be equal to Notification1");
 	
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification2" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification2"]];
 	STAssertTrue([lastNotification isEqualToString:@"Notification2"], @"should be equal to Notification2");
 	
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification3" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification3"]];
 	STAssertTrue([lastNotification isEqualToString:@"Notification3"], @"should be equal to Notification3");
 	
 	// Remove the Mediator that responds to 1 and 2
@@ -230,13 +230,13 @@
 	// for notifications 1 and 2, but still work for 3
 	self.lastNotification = nil;
 	
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification1" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification1"]];
 	STAssertTrue(lastNotification == nil, @"lastNotification should be nil");
 	
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification2" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification2"]];
 	STAssertTrue(lastNotification == nil, @"lastNotification should be nil");  
 	
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification3" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification3"]];
 	STAssertTrue([lastNotification isEqualToString:@"Notification3"], @"should be equal to Notification3");                                     
 }
 
@@ -246,7 +246,7 @@
 	id<IView> view = [View getInstance];
 	
 	// Create and register that responds to notification 3
-	id<IMediator> mediator3 = [[[ViewTestMediator3 alloc] initWithMediatorName:@"testing3" viewComponent:self] autorelease];
+	id<IMediator> mediator3 = [ViewTestMediator3 withMediatorName:@"testing3" viewComponent:self];
 	[view registerMediator:mediator3];
 
 	
@@ -255,7 +255,7 @@
 	
 	// test that the counter is only incremented once (mediator 3's response) 
 	counter = 0;
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification3" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification3"]];
 	STAssertTrue(counter == 1, @"counter should be 1");
 	
 	// Remove the Mediator 
@@ -266,7 +266,7 @@
 	
 	// test that the counter is no longer incremented  
 	counter = 0;
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification3" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification3"]];
 	STAssertTrue(counter == 0, @"counter should be 0");
 }
 
@@ -279,27 +279,27 @@
 	// by removing themselves, which will cause the observer list for that notification 
 	// to change. versions prior to Standard Version 2.0.4 will see every other mediator
 	// fails to be notified.  
-	[view registerMediator:[[[ViewTestMediator6 alloc] initWithMediatorName:@"testing1" viewComponent:self] autorelease]];
-	[view registerMediator:[[[ViewTestMediator6 alloc] initWithMediatorName:@"testing2" viewComponent:self] autorelease]];
-	[view registerMediator:[[[ViewTestMediator6 alloc] initWithMediatorName:@"testing3" viewComponent:self] autorelease]];
-	[view registerMediator:[[[ViewTestMediator6 alloc] initWithMediatorName:@"testing4" viewComponent:self] autorelease]];
-	[view registerMediator:[[[ViewTestMediator6 alloc] initWithMediatorName:@"testing5" viewComponent:self] autorelease]];
-	[view registerMediator:[[[ViewTestMediator6 alloc] initWithMediatorName:@"testing6" viewComponent:self] autorelease]];
-	[view registerMediator:[[[ViewTestMediator6 alloc] initWithMediatorName:@"testing7" viewComponent:self] autorelease]];
-	[view registerMediator:[[[ViewTestMediator6 alloc] initWithMediatorName:@"testing8" viewComponent:self] autorelease]];
+	[view registerMediator:[ViewTestMediator6 withMediatorName:@"testing1" viewComponent:self]];
+	[view registerMediator:[ViewTestMediator6 withMediatorName:@"testing2" viewComponent:self]];
+	[view registerMediator:[ViewTestMediator6 withMediatorName:@"testing3" viewComponent:self]];
+	[view registerMediator:[ViewTestMediator6 withMediatorName:@"testing4" viewComponent:self]];
+	[view registerMediator:[ViewTestMediator6 withMediatorName:@"testing5" viewComponent:self]];
+	[view registerMediator:[ViewTestMediator6 withMediatorName:@"testing6" viewComponent:self]];
+	[view registerMediator:[ViewTestMediator6 withMediatorName:@"testing7" viewComponent:self]];
+	[view registerMediator:[ViewTestMediator6 withMediatorName:@"testing8" viewComponent:self]];
 	
 	// clear the counter
 	counter = 0;
 	// send the notification. each of the above mediators will respond by removing
 	// themselves and incrementing the counter by 1. This should leave us with a
 	// count of 8, since 8 mediators will respond.
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification6" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification6"]];
 	// verify the count is correct
 	STAssertTrue(counter == 8, @"counter should be 8");
     
 	// test that the counter is no longer incremented
 	counter = 0;
-	[view notifyObservers:[[[Notification alloc] initWithName:@"Notification6" body:nil type:nil] autorelease]];
+	[view notifyObservers:[Notification withName:@"Notification6"]];
 	STAssertTrue(counter == 0, @"counter should be 0");
 }
 

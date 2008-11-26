@@ -16,14 +16,14 @@
 -(void)testSimpleCommandExecute {
 	
 	// Create the VO
-	TestVO *vo = [[[TestVO alloc] init] autorelease];
+	TestVO *vo = [TestVO testVO];
 	vo.input = 5;
 	
 	// Create the Notification (note)
-	id<INotification> note = [[[Notification alloc] initWithName:@"SimpleCommandTest" body:vo type:nil] autorelease];
+	id<INotification> note = [Notification withName:@"SimpleCommandTest" body:vo];
 	
 	// Create the SimpleCommand              
-	id<ICommand> command = [[[TestCommand alloc] init] autorelease];
+	id<ICommand> command = [TestCommand command];
 	
 	[command execute:note];
 	

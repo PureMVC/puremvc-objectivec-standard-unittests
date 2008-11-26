@@ -14,7 +14,7 @@
 -(void)testNameAccessor {
 	
 	// Create a new Mediator and use accessors to set the mediator name 
-	id<IMediator> mediator = [[[Mediator alloc] init] autorelease];
+	id<IMediator> mediator = [Mediator mediator];
 	
 	// test assertions
 	STAssertTrue([[mediator getMediatorName] isEqualToString:@"Mediator"], @"mediator name should be Mediator");
@@ -26,10 +26,10 @@
 	id object = [[[NSObject alloc] init] autorelease];
 	
 	// Create a new Proxy and use accessors to set the proxy name 
-	id<IMediator> mediator = [[[Mediator alloc] initWithMediatorName:@"MyMediator" viewComponent:object] autorelease];
+	id<IMediator> mediator = [Mediator withMediatorName:@"MyMediator" viewComponent:object];
 	
 	// test assertions
-	STAssertNotNULL([mediator getViewComponent], @"viewComponent should not be nil");
+	STAssertTrue([mediator getViewComponent] != nil, @"viewComponent should not be nil");
 }
 
 

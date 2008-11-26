@@ -14,7 +14,7 @@
 -(void)testConstructor {
 	
 	// Create a new Notification and use accessors to set the note name 
-	id<INotification> note = [[[Notification alloc] initWithName:@"TestNote" body:@"5" type:@"TestType"] autorelease];
+	id<INotification> note = [Notification withName:@"TestNote" body:@"5" type:@"TestType"];
 	
 	// test assertions
 	STAssertTrue([[note getName] isEqualToString:@"TestNote"], @"getName should be TestNote");
