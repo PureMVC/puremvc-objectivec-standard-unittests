@@ -12,7 +12,7 @@
 @implementation ViewTestMediator3
 
 -(void)handleNotification:(id<INotification>)notification {
-	[self.viewComponent setLastNotification:[notification getName]];
+	[self.viewComponent setLastNotification:[notification name]];
 	((ViewTest *)viewComponent).counter++;
 }
 

@@ -25,7 +25,7 @@
 	[model registerProxy:[Proxy withProxyName:@"colors" data:[NSArray arrayWithObjects:@"red", @"green", @"blue", nil]]];
 	
 	id<IProxy> proxy = [model retrieveProxy:@"colors"];
-	NSArray *data = [proxy getData];
+	NSArray *data = [proxy data];
 	
 	// test assertions
 	STAssertTrue(data != nil, @"Expecting data not null");
@@ -45,7 +45,7 @@
 	id<IProxy> proxy = [model removeProxy:@"sizes"];
 	
 	// assert that we removed the appropriate proxy
-	STAssertTrue([[proxy getProxyName] isEqualToString:@"sizes"], @"proxyName shoud be equal to 'sizes'");
+	STAssertTrue([[proxy proxyName] isEqualToString:@"sizes"], @"proxyName shoud be equal to 'sizes'");
 	
 	// ensure that the proxy is no longer retrievable from the model
 	proxy = [model retrieveProxy:@"sizes"];
@@ -82,13 +82,13 @@
 	[model registerProxy:proxy];
 	
 	// assert that onRegsiter was called, and the proxy responded by setting its data accordingly
-	STAssertTrue([[proxy getData] isEqualToString:@"onRegister called"], @"on register should be called");
+	STAssertTrue([[proxy data] isEqualToString:@"onRegister called"], @"on register should be called");
 	
 	// Remove the component
 	[model removeProxy:@"Proxy"];
 	
 	// assert that onRemove was called, and the proxy responded by setting its data accordingly
-	STAssertTrue([[proxy getData] isEqualToString:@"onRemove called"], @"on remove should be called");
+	STAssertTrue([[proxy data] isEqualToString:@"onRemove called"], @"on remove should be called");
 	
 }
 

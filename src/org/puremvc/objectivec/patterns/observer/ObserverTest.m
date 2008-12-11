@@ -43,7 +43,7 @@
 }
 
 -(void)observerTestMethod:(id<INotification>)notification {
-	observerTestVar = [notification getBody];
+	observerTestVar = [notification body];
 }
 
 @end

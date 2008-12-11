@@ -19,7 +19,7 @@
 }
 
 -(void)handleNotification:(id<INotification>)notification {
-	[self.viewComponent setLastNotification:[notification getName]];
+	[self.viewComponent setLastNotification:[notification name]];
 }
 
 -(NSArray *)listNotificationInterests {

@@ -13,7 +13,7 @@
 @implementation ViewTestMediator6
 
 -(void)handleNotification:(id<INotification>)notification {
-	[[Facade getInstance] removeMediator:[self getMediatorName]];
+	[[Facade getInstance] removeMediator:[self mediatorName]];
 }
 
 -(NSArray *)listNotificationInterests {

@@ -70,7 +70,7 @@
 	STAssertTrue(proxy != nil, @"proxy should not be nil");
 	
 	// retrieve data from proxy
-	NSArray *data = [proxy getData];
+	NSArray *data = [proxy data];
 	
 	// test assertions
 	STAssertTrue(data != nil, @"Expecting data not null");
@@ -92,7 +92,7 @@
 	id<IProxy> proxy = [facade removeProxy:@"sizes"];
 	
 	// assert that we removed the appropriate proxy
-	STAssertTrue([[proxy getProxyName] isEqualToString:@"sizes"], @"proxyName shoud be equal to 'sizes'");
+	STAssertTrue([[proxy proxyName] isEqualToString:@"sizes"], @"proxyName shoud be equal to 'sizes'");
 	
 	// ensure that the proxy is no longer retrievable from the model
 	proxy = [facade retrieveProxy:@"sizes"];
@@ -117,7 +117,7 @@
 	mediator = [facade removeMediator:@"TestMediator"];
 	
 	// assert that we have removed the appropriate mediator
-	STAssertTrue([[mediator getMediatorName] isEqualToString:@"TestMediator"], @"name should be TestMediator");
+	STAssertTrue([[mediator mediatorName] isEqualToString:@"TestMediator"], @"name should be TestMediator");
 	
 	// assert that the mediator is no longer retrievable
 	mediator = [facade retrieveMediator:@"TestMediator"];

@@ -26,7 +26,7 @@
 
 -(void)viewTestMethod:(id<INotification>)notification {
 	// set the local viewTestVar to the number on the event payload
-	viewTestVar = [notification getBody];
+	viewTestVar = [notification body];
 }
 
 
@@ -104,7 +104,7 @@
 	id<IMediator> removeMediator = [view removeMediator:@"testing"];
 	
 	// assert that we have removed the appropriate mediator
-	STAssertTrue([[removeMediator getMediatorName] isEqualToString:@"testing"], @"name should be testing");
+	STAssertTrue([[removeMediator mediatorName] isEqualToString:@"testing"], @"name should be testing");
 	
 	// assert that the mediator is no longer retrievable
 	STAssertTrue([view retrieveMediator:@"testing"] == nil, @"retrieve mediator should be nil");

@@ -12,7 +12,7 @@
 @implementation MacroCommandTestSub1Command
 
 -(void)execute:(id<INotification>)notification {
-	TestVO *vo = [notification getBody];
+	TestVO *vo = [notification body];
 	vo.result1 = 2 * vo.input;
 }
 

@@ -12,7 +12,7 @@
 @implementation ControllerTestCommand
 
 -(void)execute:(id<INotification>)notification {
-	TestVO *vo = [notification getBody];
+	TestVO *vo = [notification body];
 	vo.result = 2 * vo.input;
 }
 

@@ -17,7 +17,7 @@
 	id<IMediator> mediator = [Mediator mediator];
 	
 	// test assertions
-	STAssertTrue([[mediator getMediatorName] isEqualToString:@"Mediator"], @"mediator name should be Mediator");
+	STAssertTrue([[mediator mediatorName] isEqualToString:@"Mediator"], @"mediator name should be Mediator");
 }
 
 -(void)testViewAccessor {
@@ -29,7 +29,7 @@
 	id<IMediator> mediator = [Mediator withMediatorName:@"MyMediator" viewComponent:object];
 	
 	// test assertions
-	STAssertTrue([mediator getViewComponent] != nil, @"viewComponent should not be nil");
+	STAssertTrue([mediator viewComponent] != nil, @"viewComponent should not be nil");
 }
 
 

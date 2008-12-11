@@ -17,9 +17,9 @@
 	id<INotification> note = [Notification withName:@"TestNote" body:@"5" type:@"TestType"];
 	
 	// test assertions
-	STAssertTrue([[note getName] isEqualToString:@"TestNote"], @"getName should be TestNote");
-	STAssertTrue([[note getBody] isEqualToString:@"5"], @"getBody should be 5");
-	STAssertTrue([[note getType] isEqualToString:@"TestType"], @"getType should be TestType");
+	STAssertTrue([[note name] isEqualToString:@"TestNote"], @"name should be TestNote");
+	STAssertTrue([[note body] isEqualToString:@"5"], @"body should be 5");
+	STAssertTrue([[note type] isEqualToString:@"TestType"], @"type should be TestType");
 }
 
 @end
