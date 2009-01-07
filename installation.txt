@@ -1,0 +1,59 @@
+Installation
+
+Download the latest version of the Unit Tests distribution and unzip to a directory on your system, such as
+
+    ~/Dev
+
+This will create a folder like this
+
+    ~/Dev/PureMVC_ObjectiveC_UnitTests_X_Y
+
+Where X_Y is the unit tests version number.
+
+Inside you will find
+
+    * The source code: src/org/puremvc/objectivec/...
+    * The PureMVC static library used by the unit tests: lib/PureMVC/PureMVC_ObjectiveC_X_Y.a
+    * The PureMVC header files used by the unit tests: lib/PureMVC/headers
+
+
+Setup, Build, and Run the Unit Tests using XCode:
+
+Create a new XCode Project called 'PureMVCUnitTests' in XCode.  Make sure to choose the template
+
+    Mac OS X : Other : Empty Project
+
+From the Groups & Files pane right click on Targets and select
+
+    Add -> New Target
+  
+Name it PureMVCUnitTests and make sure to choose the template
+
+    Mac OS X : Cocoa : Unit Test Bundle
+  
+From the Groups & Files pane, right click on top level PureMVCUnitTests project folder and select
+
+    Add -> Existing Files...
+
+Browse and Add
+
+    ~/Dev/PureMVC_ObjectiveC_UnitTests_X_Y/src
+
+From the Groups & Files pane, under the target PureMVCUnitTests, right click on the Link Binary With Libraries folder and select
+
+    Add -> Existing Files...
+
+Browse and Add
+
+    ~/Dev/PureMVC_ObjectiveC_UnitTests_X_Y/lib/PureMVC/PureMVC_ObjectiveC_X_Y.a
+
+From the Groups & Files pane, double click the PureMVCUnitTests target or right click and select, Get Info, and then click on the Build tab.
+
+Under the setting, Header Search Paths, add "~/Dev/Demo_ObjectiveC_UIKit_EmployeeAdmin_X_Y/lib/PureMVC/headers"
+
+From the Build file menu choose Build Results and then click the small icon at the bottom of the top pane that looks like a written paragraph (hover reads: Select this to show or hide the build transcript).  Increase the height of the build transcript pane.
+
+Click the Build (hammer) at the top of the Build Results window, you should see the running of the tests and results.
+
+
+
