@@ -49,11 +49,11 @@ Browse and Add
 
 From the Groups & Files pane, double click the PureMVCUnitTests target or right click and select, Get Info, and then click on the Build tab.
 
-Under the setting, Header Search Paths, add "~/Dev/Demo_ObjectiveC_UIKit_EmployeeAdmin_X_Y/lib/PureMVC/headers"
+Under the setting, Header Search Paths, add "~/Dev/PureMVC_ObjectiveC_UnitTests_X_Y/lib/PureMVC/headers"
 
 From the Build file menu choose Build Results and then click the small icon at the bottom of the top pane that looks like a written paragraph (hover reads: Select this to show or hide the build transcript).  Increase the height of the build transcript pane.
 
-Click the Build (hammer) at the top of the Build Results window, you should see the running of the tests and results.
+Click the Build (hammer) at the top of the Build Results window, you should see the tests running and results.
 
 
 
