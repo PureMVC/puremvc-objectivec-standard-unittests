@@ -8,5 +8,6 @@ Release Date: 1/14/09
       Author: Brian Knorr <brian.knorr@puremvc.org>
      License: Creative Commons Attribution 3.0 Unported License
 --------------------------------------------------------------------------
-1.0 - Release with PureMVC 1.0
+1.1 - Release for PureMVC 1.1 - BTK
+1.0 - Release with PureMVC 1.0 - BTK
 0.1 - Unit Tests imported into new structure. - CLH
